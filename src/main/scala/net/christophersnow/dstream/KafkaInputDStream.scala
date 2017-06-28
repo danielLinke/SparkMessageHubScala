@@ -9,7 +9,6 @@ import scala.reflect.classTag
 import org.apache.kafka.clients.consumer.ConsumerRecord
 import org.apache.kafka.clients.consumer.KafkaConsumer
 import org.apache.kafka.common.serialization.Deserializer
-import org.apache.spark.Logging
 import org.apache.spark.storage.StorageLevel
 import org.apache.spark.streaming.StreamingContext
 import org.apache.spark.streaming.dstream._
@@ -28,7 +27,7 @@ class KafkaInputDStream[
     kafkaParams: Map[String, String],
     topics: List[String],
     storageLevel: StorageLevel = StorageLevel.MEMORY_AND_DISK
-  ) extends ReceiverInputDStream[(K, V)](ssc) with Logging {
+  ) extends ReceiverInputDStream[(K, V)](ssc) {
 
   def getReceiver(): Receiver[(K, V)] = {
       new KafkaReceiver[K, V, U, T](kafkaParams, topics, storageLevel)
@@ -57,7 +56,7 @@ class KafkaReceiver[
     kafkaParams: Map[String,String],
     topics: List[String],
     storageLevel: StorageLevel
-  ) extends Receiver[(K, V)](storageLevel) with Logging {
+  ) extends Receiver[(K, V)](storageLevel) {
 
   // Connection to Kafka
   var kafkaConsumer: KafkaConsumer[K,V] = null
