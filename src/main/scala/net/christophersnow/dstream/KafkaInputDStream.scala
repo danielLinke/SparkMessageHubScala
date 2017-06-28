@@ -72,7 +72,7 @@ class KafkaReceiver[
   }
 
   def onStart() {
-    logInfo("Starting Kafka Consumer Stream")
+    //logInfo("Starting Kafka Consumer Stream")
     
     //Make sure the Jaas Login config param is set
     val jaasLoginParam = System.getProperty(JaasUtils.JAVA_LOGIN_CONFIG_PARAM);
