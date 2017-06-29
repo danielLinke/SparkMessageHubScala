@@ -37,9 +37,9 @@ class DemoConfig extends Serializable{
     val configPath = System.getenv("DEMO_CONFIG_PATH");
     if ( configPath != null ){
       val props = new java.util.Properties
-      var fis:InputStream = null
+      var fis:java.io.InputStream = null
       try{
-        fis = new FileInputStream(configPath)
+        fis = new java.io.FileInputStream(configPath)
         props.load(fis)
         for( key <- props.keysIterator ){
           setConfig( key, props.getProperty(key))
